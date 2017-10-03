@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dom Experiment - Tip Calculator</title>
+<meta name="description" content="Quick and Simple bill+tip calculator">
+<style>
+    #wrapper {
+        width: 50%;
+        margin: 0 auto;
+        border: 3px solid aqua;
+        border-radius: 10px;
+    }
+    
+    #form {
+        text-align: center;
+    }
+    
+    h3, #total {
+        text-align: center;
+        color: rebeccapurple;
+    }
+    
+    #bill, #tip {
+        background-color: aqua;
+        font-size: 16px;
+        border-radius: 5px;
+        -webkit-transition: all 300ms ease-in-out; /*that should ensure that transtion works on all browsers*/
+        -moz-transition: all 300ms ease-in-out;
+        -o-transition: all 300ms ease-in-out;
+    }
+    
+    #bill:hover, #tip:hover {
+        background-color: aliceblue;
+    }
+    #number_of_people, #calculate{
+        font-size: 16px;
+        background-color: azure;
+        border-radius: 5px;
+        -webkit-transition: all 300ms ease-in-out;
+        -moz-transition: all 300ms ease-in-out;
+        -o-transition: all 300ms ease-in-out;
+    }
+    
+    #number_of_people:hover, #calculate:hover {
+        background-color: aqua;
+    }
+    
+</style>
+    
+    <script type="text/javascript">
+        
+    function splitAmount(bill, tip, number_of_people){
+        var bill = parseInt(bill);
+        var tip = parseInt(tip);
+        var totalBill = bill+(bill * (tip/100));
+        if (number_of_people === 1){
+            var tot = totalBill.toFixed(2);
+            document.getElementById('total').innerHTML = tot;
+        }else{
+            var tot = (totalBill/number_of_people).toFixed(2);
+            document.getElementById('total').innerHTML = tot;
+        }
+    }
+    </script>
+</head>
+<body>
+<div id = "wrapper">
+    <h3>Quick and Simple Bill+Tip Calculator</h3>
+    <div id = "form">
+        <input id = "bill" name = "bill" type="text" placeholder = "Enter your bill here" required>
+        <input id = "tip" name = "tip" type="text" placeholder = "tip in %" required>
+        <select id = "number_of_people" name = "number_of_people" >
+            <option value = '1'>number of people: 1</option>
+            <option value = '2'>2 people</option>
+            <option value = '3'>3 people</option>
+            <option value = '4'>4 people</option>
+            <option value = '5'>5 people</option>
+            <option value = '6'>6 people</option>
+            <option value = '7'>7 people</option>
+            <option value = '8'>8 people</option>
+            <option value = '9'>9 people</option>
+        </select>
+        <button id = "calculate" type="submit" onclick = "splitAmount(bill.value, tip.value, number_of_people.value);">calculate</button> 
+    </div>
+    <h3>your bill is: <span id = "total"></span> $</h3>
+</div>    
+
+</body>
+</html>
