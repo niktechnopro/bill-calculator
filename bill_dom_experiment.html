@@ -27,6 +27,7 @@
         -webkit-transition: all 300ms ease-in-out; /*that should ensure that transtion works on all browsers*/
         -moz-transition: all 300ms ease-in-out;
         -o-transition: all 300ms ease-in-out;
+        box-shadow: 5px 5px 10px #888;
     }
     
     #bill:hover, #tip:hover {
@@ -39,6 +40,7 @@
         -webkit-transition: all 300ms ease-in-out;
         -moz-transition: all 300ms ease-in-out;
         -o-transition: all 300ms ease-in-out;
+        box-shadow: 5px 5px 10px #888;
     }
     
     #number_of_people:hover, #calculate:hover {
@@ -52,13 +54,12 @@
     function splitAmount(bill, tip, number_of_people){
         var bill = parseInt(bill);
         var tip = parseInt(tip);
-        var totalBill = bill+(bill * (tip/100));
-        if (number_of_people === 1){
-            var tot = totalBill.toFixed(2);
-            document.getElementById('total').innerHTML = tot;
+        if (isNaN(bill) || isNaN(tip)){
+            document.getElementById('warning').innerHTML = "you have letters or empty field in your input, reenter numbers please"
         }else{
-            var tot = (totalBill/number_of_people).toFixed(2);
-            document.getElementById('total').innerHTML = tot;
+            var totalBill = (bill+(bill * (tip/100)))/number_of_people;
+            var tot = totalBill.toFixed(2);
+            document.getElementById('warning').innerHTML = "Your bill is: $" + tot ;
         }
     }
     </script>
@@ -82,7 +83,7 @@
         </select>
         <button id = "calculate" type="submit" onclick = "splitAmount(bill.value, tip.value, number_of_people.value);">calculate</button> 
     </div>
-    <h3>your bill is: <span id = "total"></span> $</h3>
+    <h3 id="warning">Your bill is: $</h3>
 </div>    
 
 </body>
