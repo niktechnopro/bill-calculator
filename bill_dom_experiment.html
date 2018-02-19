@@ -20,21 +20,22 @@
         color: rebeccapurple;
     }
     
-    #bill, #tip {
+    #bill, #tip, #number_of_people {
         background-color: aqua;
-        font-size: 16px;
+        font-size: 1.5rem;
         border-radius: 5px;
         -webkit-transition: all 300ms ease-in-out; /*that should ensure that transtion works on all browsers*/
         -moz-transition: all 300ms ease-in-out;
         -o-transition: all 300ms ease-in-out;
         box-shadow: 5px 5px 10px #888;
+        margin-bottom: 1%;
     }
     
     #bill:hover, #tip:hover {
         background-color: aliceblue;
     }
     #number_of_people, #calculate{
-        font-size: 16px;
+        font-size: 1.5rem;
         background-color: azure;
         border-radius: 5px;
         -webkit-transition: all 300ms ease-in-out;
@@ -49,20 +50,6 @@
     
 </style>
     
-    <script type="text/javascript">
-        
-    function splitAmount(bill, tip, number_of_people){
-        var bill = parseInt(bill);
-        var tip = parseInt(tip);
-        if (isNaN(bill) || isNaN(tip)){
-            document.getElementById('warning').innerHTML = "you have letters or empty field in your input, reenter numbers please"
-        }else{
-            var totalBill = (bill+(bill * (tip/100)))/number_of_people;
-            var tot = totalBill.toFixed(2);
-            document.getElementById('warning').innerHTML = "Your bill is: $" + tot ;
-        }
-    }
-    </script>
 </head>
 <body>
 <div id = "wrapper">
@@ -84,7 +71,22 @@
         <button id = "calculate" type="submit" onclick = "splitAmount(bill.value, tip.value, number_of_people.value);">calculate</button> 
     </div>
     <h3 id="warning">Your bill is: $</h3>
-</div>    
+</div> 
+
+    <script type="text/javascript">
+        
+    function splitAmount(bill, tip, number_of_people){
+        var bill = parseInt(bill);
+        var tip = parseInt(tip);
+        if (isNaN(bill) || isNaN(tip)){
+            document.getElementById('warning').innerHTML = "you have letters or empty field in your input, reenter numbers please"
+        }else{
+            var totalBill = (bill+(bill * (tip/100)))/number_of_people;
+            var tot = totalBill.toFixed(2);
+            document.getElementById('warning').innerHTML = "Your bill is: $" + tot ;
+        }
+    }
+    </script>   
 
 </body>
 </html>
